@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	public Transform firePoint;
 	public GameObject fireBall;
 
+	public AudioSource JumpingSound;
+
 	private float moveVelocity;
 
 
@@ -55,6 +57,15 @@ public class PlayerController : MonoBehaviour {
 			Jump();
 
 
+
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
+			// Painettiin välilyöntinäppäintä , suoritetaan hyppy
+			// velocity = nopeus
+			// hyppy onnistuu jos ollaan maassa
+			JumpingSound.Play ();
+
 		}
 	
 
@@ -65,6 +76,11 @@ public class PlayerController : MonoBehaviour {
 			Jump();
 			doubleJumped = true;
 
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space) && !grounded && !doubleJumped) {
+			JumpingSound.Play ();
+			doubleJumped = true;
 		}
 		//Ennen painikkeiden painamista, nopeus = 0
 		moveVelocity = 0;
@@ -107,5 +123,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Jump(){
 		GetComponent <Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+		JumpingSound.Play();
 	}
 }
