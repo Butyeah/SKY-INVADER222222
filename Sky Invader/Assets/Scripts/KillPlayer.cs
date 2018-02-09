@@ -1,26 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour {
 
-	// YHteys LevelManageriin
-	private LevelManager levelManager;
+	public GameObject gameOverMenu;
+	private bool isGameOver;
 
-	// Use this for initialization
-	void Start () {
+	void Awake () {
+		gameOverMenu.SetActive(false);
+	}
 
-		levelManager = FindObjectOfType<LevelManager>();
-
+	void Update () {
+		if (isGameOver == true) {
+			if (Input.GetKeyDown (KeyCode.Mouse1)) {
+				return;
+			} else if (Input.anyKeyDown) {
+				GameOverMenu ();
+			}
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.tag == "Player")
 		{
-
-			// Siirretään pelihahmo viimeiseen tarkistuspisteeseen
-			levelManager.RespanPlayer();
+			GameOverMenu ();
 		}
+	}
+
+	void GameOverMenu () {
+		gameOverMenu.SetActive(true);
+		Time.timeScale = 0f;
+		isGameOver = true;
+	}
+
+	public void PlayAgain () {
+		Time.timeScale = 1f;
+		SceneManager.LoadScene ("lv01");
+	}
+
+	public void LoadMenu () {
+		SceneManager.LoadScene ("TitleScreen");
+	}
+
+	public void QuitGame () {
+		Application.Quit ();
 	}
 }

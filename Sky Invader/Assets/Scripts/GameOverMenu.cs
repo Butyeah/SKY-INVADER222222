@@ -5,12 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour {
 
-	private PlayerController playerController;
+	private KillPlayer killPlayer;
 
 	// Use this for initialization
 	void Start () {
-		playerController = FindObjectOfType<PlayerController> ();
-
+		killPlayer = FindObjectOfType<KillPlayer> ();
 	}
 	
 	// Update is called once per frame
