@@ -61,9 +61,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
-			// Painettiin välilyöntinäppäintä , suoritetaan hyppy
-			// velocity = nopeus
-			// hyppy onnistuu jos ollaan maassa
+			// Ääni hypyssä
 			JumpingSound.Play ();
 
 		}

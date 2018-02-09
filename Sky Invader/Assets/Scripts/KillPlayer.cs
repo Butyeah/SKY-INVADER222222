@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour {
 
+	public GameObject player;
 	public GameObject gameOverMenu;
 	private bool isGameOver;
 
@@ -26,8 +27,13 @@ public class KillPlayer : MonoBehaviour {
 	{
 		if(collision.tag == "Player")
 		{
+			DestroyGameObject ();
 			GameOverMenu ();
 		}
+	}
+
+	void DestroyGameObject () {
+		Destroy (player);
 	}
 
 	void GameOverMenu () {
