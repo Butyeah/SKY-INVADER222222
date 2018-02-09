@@ -105,12 +105,12 @@ public class PlayerController : MonoBehaviour {
 		if(GetComponent<Rigidbody2D>().velocity.x > 0){
 
 			//suunta on oikea
-			transform.localScale = new Vector3(1f,1f,1f);
+			transform.localScale = new Vector3(0.4f,0.4f,0.4f);
 		}
 		else if (GetComponent<Rigidbody2D>().velocity.x < 0){
 
 			//Suunta on vasemmalle
-			transform.localScale = new Vector3(-1f,1f,1f);
+			transform.localScale = new Vector3(-0.4f,0.4f,0.4f);
 		}
 
 		//Ampuminen. Painettiinko return painiketta?
