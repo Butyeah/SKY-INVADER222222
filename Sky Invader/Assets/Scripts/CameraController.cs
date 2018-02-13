@@ -28,7 +28,7 @@ void Update () {
 		}
 
 		if (hasPlayerMoved == true) {
-			float newPosition = Mathf.Repeat (Time.time * moveSpeed, tileSpeedZ);
+			float newPosition = Mathf.Repeat (Time.timeSinceLevelLoad * moveSpeed, tileSpeedZ);
 			transform.position = startPosition + Vector3.up * newPosition;
 		}
 }
