@@ -9,6 +9,8 @@ public class KillPlayer : MonoBehaviour {
 	public GameObject gameOverMenu;
 	private bool isGameOver;
 
+	public AudioSource Deathsound;
+
 	void Awake () {
 		gameOverMenu.SetActive(false);
 	}
@@ -28,12 +30,14 @@ public class KillPlayer : MonoBehaviour {
 		if(collision.tag == "Player")
 		{
 			DestroyGameObject ();
+			Deathsound.Play ();
 			GameOverMenu ();
 		}
 	}
 
 	void DestroyGameObject () {
 		Destroy (player);
+		Deathsound.Play ();
 	}
 
 	void GameOverMenu () {

@@ -9,6 +9,9 @@ public class PauseMenu : MonoBehaviour {
 
 	public GameObject pauseMenuUI;
 
+	public AudioSource PauseButtonSound;
+	public AudioSource PauseQuitButtonSound;
+
 	void Awake () {
 		pauseMenuUI.SetActive(false);
 	}
@@ -36,13 +39,16 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenuUI.SetActive (true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
+
 	}
 
 	public void LoadMenu () {
+		PauseButtonSound.Play ();
 		SceneManager.LoadScene ("TitleScreen");
 	}
 
 	public void QuitGame () {
+		PauseQuitButtonSound.Play ();
 		Application.Quit ();
 	}
 }
