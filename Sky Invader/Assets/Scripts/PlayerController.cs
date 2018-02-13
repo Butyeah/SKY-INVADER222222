@@ -26,7 +26,11 @@ public class PlayerController : MonoBehaviour {
 
 
 
-
+	private void Start()
+	{
+		//Animaatiota voidaan kontrolloida
+		animation = GetComponent<Animator> ();
+	}
 
 
 	void FixedUpdate(){
