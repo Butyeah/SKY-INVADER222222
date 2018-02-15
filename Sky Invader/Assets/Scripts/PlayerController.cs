@@ -22,11 +22,17 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioSource JumpingSound;
 
+	private Animator anim;
+
 	private float moveVelocity;
 
 
 
-
+	private void Start()
+	{
+		//Animaatiota voidaan kontrolloida
+		anim = GetComponent<Animator> ();
+	}
 
 
 	void FixedUpdate(){
@@ -47,14 +53,16 @@ public class PlayerController : MonoBehaviour {
 			doubleJumped = false;
 		}
 
+		// Määritellään hyppyanimaation tila
+		anim.SetBool("Grounded", grounded);
 
 
 		// Tarkistetaan voidaanko hypätä
-		if (Input.GetKeyDown (KeyCode.Space) && grounded ) {
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			// Painettiin välilyöntinäppäintä , suoritetaan hyppy
 			// velocity = nopeus
 			// hyppy onnistuu jos ollaan maassa
-			Jump();
+			Jump ();
 
 
 
@@ -71,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space) && !grounded && !doubleJumped) {
 			// Hyppy onnistuu, jos ei olla maassa eikä olla tekemässä kaksoishyppyä.
 			// Painettiin välilyöntinäppäintä , suoritetaan hyppy
-			Jump();
+			Jump ();
 			doubleJumped = true;
 
 		}
@@ -95,9 +103,10 @@ public class PlayerController : MonoBehaviour {
 			moveVelocity = -moveSpeed;
 		}
 
+		anim.SetFloat("Speed",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+
 		GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveVelocity, GetComponent<Rigidbody2D> ().velocity.y);
 
-	
 
 		//käännetään pelihahmo sen transformin avulla
 		if(GetComponent<Rigidbody2D>().velocity.x > 0){
