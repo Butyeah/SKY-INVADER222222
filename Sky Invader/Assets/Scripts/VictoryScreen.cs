@@ -30,6 +30,10 @@ public class VictoryScreen : MonoBehaviour {
 		SceneManager.LoadScene ("lv01");
 	}
 
+	public void NextLevel () {
+		SceneManager.LoadScene ("lv02");
+	}
+
 	public void LoadMenu () {
 		SceneManager.LoadScene ("TitleScreen");
 	}
